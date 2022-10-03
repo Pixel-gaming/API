@@ -54,18 +54,6 @@ public interface Command {
      */
     List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
     /**
-     * Test whether this command can probably be executed by the given source.
-     *
-     * <p>If implementations are unsure if the command can be executed by
-     * the source, {@code true} should be returned. Return values of this method
-     * may be used to determine whether this command is listed in command
-     * listings.</p>
-     *
-     * @param source The caller of the command
-     * @return Whether permission is (probably) granted
-     */
-    default boolean testPermission(CommandSource source){return true;}
-    /**
      * Gets a short one-line description of this command.
      *
      * <p>The help system may display the description in the command list.</p>

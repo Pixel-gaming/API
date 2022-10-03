@@ -24,18 +24,31 @@ public class TimeEntry{
         TimeEntry te = new TimeEntry();
         for(val s:parse.split("\\+")){
             try{
-                String[] tv = s.split(",");
-                TimeUnit u = Convert.asTimeUnit(tv[1]).get();
-                switch (u){
-                    case DAYS:te.days+=Long.parseLong(tv[0]); break;
-                    case HOURS:te.hours+=Long.parseLong(tv[0]); break;
-                    case MINUTES:te.minutes+=Long.parseLong(tv[0]); break;
-                    case SECONDS:te.seconds+=Long.parseLong(tv[0]); break;
-                    case MILLISECONDS:te.ms+=Long.parseLong(tv[0]); break;
-                    case MICROSECONDS:te.us+=Long.parseLong(tv[0]); break;
-                    case NANOSECONDS:te.ns+=Long.parseLong(tv[0]); break;
+                TimeUnit u = null;
+                String value = null;
+                for (val entry:Convert.timeUnit.entrySet()){
+                    if (s.endsWith(entry.getKey())){
+                        u=entry.getValue();
+                        value=s.substring(0,s.length()-entry.getKey().length())
+                                //compatibility
+                                .replace(",","");
+                        break;
+                    }
                 }
-            }catch (ArrayIndexOutOfBoundsException | NumberFormatException | NoSuchElementException e){
+                if(u==null||value==null){
+                    throw new NullPointerException("The unit was likely invalid");
+                }
+                long val = Long.parseLong(value);
+                switch (u){
+                    case DAYS:te.days+=val; break;
+                    case HOURS:te.hours+=val; break;
+                    case MINUTES:te.minutes+=val; break;
+                    case SECONDS:te.seconds+=val; break;
+                    case MILLISECONDS:te.ms+=val; break;
+                    case MICROSECONDS:te.us+=val; break;
+                    case NANOSECONDS:te.ns+=val; break;
+                }
+            }catch (NullPointerException | NumberFormatException e){
                 API.getLogger().error("[API] Could not convert string to TimeEntry. Error is: ",e);
                 return Optional.empty();
             }
