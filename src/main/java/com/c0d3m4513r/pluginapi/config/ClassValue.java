@@ -1,11 +1,9 @@
 package com.c0d3m4513r.pluginapi.config;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
-public class ClassValue<T> {
-    T value;
+@Value
+public class ClassValue<V,T> {
+    V value;
     Class<T> clazz;
 }
