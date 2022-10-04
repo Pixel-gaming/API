@@ -21,6 +21,10 @@ public class TimeUnitValue implements Comparable<TimeUnitValue> {
     }
 
     @Override
+    /**
+     * This compare might yield different values depending on the order of comparing,
+     * because of the time conversion between different units.
+     */
     public int compareTo(TimeUnitValue o) {
         long ov = unit.convert(o.value,o.unit);
         return Long.compare(value,ov);

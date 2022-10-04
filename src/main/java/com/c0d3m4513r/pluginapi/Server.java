@@ -5,9 +5,10 @@ import com.c0d3m4513r.pluginapi.events.EventType;
 import com.c0d3m4513r.pluginapi.messages.MessageReceiver;
 import lombok.NonNull;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public abstract class Server implements MessageReceiver {
 
@@ -21,5 +22,7 @@ public abstract class Server implements MessageReceiver {
     protected abstract boolean restart(Optional<String> reason);
 
     public abstract Set<Task> getTasks();
+
+    public abstract Collection<World> getWorlds();
 
 }
