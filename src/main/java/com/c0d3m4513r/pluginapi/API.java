@@ -14,8 +14,6 @@ import java.net.URLClassLoader;
 public abstract class API {
     @Getter
     protected static Server server;
-    @Getter
-    protected static TaskBuilder builder;
     @Getter(AccessLevel.PUBLIC)
     protected static Logger logger;
     @Getter
@@ -42,7 +40,7 @@ public abstract class API {
         if(server.isMainThread()){
             run.run();
         }else{
-            API.getBuilder().executer(run).build();
+            TaskBuilder.builder().executer(run).build();
         }
     }
 }

@@ -7,4 +7,5 @@ import java.util.Collection;
 
 public interface World extends Viewer {
     Collection<Player> getPlayers();
+
 }

@@ -1,23 +1,31 @@
 package com.c0d3m4513r.pluginapi;
 
+import com.c0d3m4513r.pluginapi.Scoreboard.Objective;
 import lombok.NonNull;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
-public interface TaskBuilder {
+public abstract class TaskBuilder {
+    protected static Supplier<TaskBuilder> construct;
+
+    public static TaskBuilder builder(){
+        return construct.get();
+    }
     @NonNull
-    TaskBuilder async(boolean async);
+    public abstract TaskBuilder async(boolean async);
     @NonNull
-    TaskBuilder deferred(long timeAmount,@NonNull TimeUnit timeValue);
+    public abstract TaskBuilder deferred(long timeAmount,@NonNull TimeUnit timeValue);
     @NonNull
-    TaskBuilder timer(long timeAmount, @NonNull TimeUnit timeValue);
+    public abstract TaskBuilder timer(long timeAmount, @NonNull TimeUnit timeValue);
     @NonNull
-    TaskBuilder executer(@NonNull Runnable run);
+    public abstract TaskBuilder executer(@NonNull Runnable run);
     @NonNull
-    TaskBuilder name(@Nullable String name);
+    public abstract TaskBuilder name(@Nullable String name);
     @NonNull
-    TaskBuilder reset();
+    public abstract TaskBuilder reset();
     @NonNull
-    Task build() throws IllegalArgumentException;
+    public abstract Task build() throws IllegalArgumentException;
 
 }
