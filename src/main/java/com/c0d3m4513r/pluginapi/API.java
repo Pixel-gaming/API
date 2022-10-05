@@ -38,4 +38,11 @@ public abstract class API {
                 .newInstance();
         }
     }
+    public static void runOnMain(Runnable run){
+        if(server.isMainThread()){
+            run.run();
+        }else{
+            API.getBuilder().executer(run).build();
+        }
+    }
 }

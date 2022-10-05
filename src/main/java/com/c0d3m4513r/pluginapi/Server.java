@@ -6,7 +6,6 @@ import com.c0d3m4513r.pluginapi.messages.MessageReceiver;
 import lombok.NonNull;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -24,5 +23,7 @@ public abstract class Server implements MessageReceiver {
     public abstract Set<Task> getTasks();
 
     public abstract Collection<World> getWorlds();
+
+    public abstract boolean isMainThread();
 
 }
