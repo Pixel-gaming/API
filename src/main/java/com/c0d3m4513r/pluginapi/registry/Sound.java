@@ -10,7 +10,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public abstract class Sound extends Type{
     public static Sound sound = null;
-    public abstract void playSound(World world, Point3D point, int volume);
     protected abstract @Nullable Sound getSoundInt(String key);
 
     public @Nullable Sound getTypeInt(String key){

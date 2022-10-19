@@ -1,21 +1,41 @@
 package com.c0d3m4513r.pluginapi.Scoreboard;
 
-import com.c0d3m4513r.pluginapi.TriFunction;
+import com.c0d3m4513r.pluginapi.QuadFunction;
 import lombok.NonNull;
 
-import java.util.function.BiFunction;
-
 public abstract class Objective{
-    protected static TriFunction<String,String,Criteria, Objective> construct;
-    public abstract void addScore(Score score);
-    public abstract boolean hasScore(@NonNull String score);
-    public abstract void removeScore(Score score);
+    protected static QuadFunction<Scoreboard,String,String,Criteria, Objective> construct;
     public abstract void setDisplayName(@NonNull String name);
+    public abstract String getName();
 
     public abstract Score getOrCreateScore(String name);
-    public static Objective createNew(String name, String displayName,Criteria criteria){
-        return construct.apply(name,displayName,criteria);
+
+    /**
+     * Creates a new objective registered to the scoreboard. Unregisters existing objectives with equal name.
+     * @param scoreboard to register to
+     * @param name of the Objective
+     * @param displayName of the objective
+     * @param criteria of the objective
+     * @return the objective
+     */
+    public static Objective createNew(Scoreboard scoreboard,String name, String displayName,Criteria criteria){
+        return construct.apply(scoreboard,name,displayName,criteria);
     }
-    public abstract Objective createNewInstance(String name, String displayName, Criteria criteria);
-    public Objective createNewInstance(String name,Criteria criteria){return createNewInstance(name,name,criteria);}
+    /**
+     * Creates a new objective registered to the scoreboard. Unregisters existing objectives with equal name.
+     * @param scoreboard to register to
+     * @param name of the Objective
+     * @param displayName of the objective
+     * @param criteria of the objective
+     * @return the objective
+     */
+    public abstract Objective createNewInstance(Scoreboard scoreboard,String name, String displayName, Criteria criteria);
+    /**
+     * Creates a new objective registered to the scoreboard. Unregisters existing objectives with equal name.
+     * @param scoreboard to register to
+     * @param name of the Objective
+     * @param criteria of the objective
+     * @return the objective
+     */
+    public Objective createNewInstance(Scoreboard scoreboard,String name,Criteria criteria){return createNewInstance(scoreboard,name,name,criteria);}
 }
