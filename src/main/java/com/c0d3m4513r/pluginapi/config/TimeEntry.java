@@ -4,6 +4,7 @@ import com.c0d3m4513r.pluginapi.API;
 import com.c0d3m4513r.pluginapi.convert.Convert;
 import lombok.*;
 
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +21,59 @@ public class TimeEntry{
     public long us;
     public long ns;
 
+    public static Optional<TimeEntry> of(String unit, String value){
+        long longValue;
+        try {
+            longValue = Long.parseLong(value);
+        }catch (NullPointerException e){
+            return Optional.empty();
+        }
+        TimeEntry te = new TimeEntry();
+        switch (unit) {
+            case "ns":
+            case "nanosecond":
+            case "nanoseconds":
+                te.ns = longValue;
+                break;
+            case "ys":
+            case "us":
+            case "microsecond":
+            case "microseconds":
+                te.us = longValue;
+                break;
+            case "ms":
+            case "millisecond":
+            case "milliseconds":
+                te.ms = longValue;
+                break;
+            case "s":
+            case "sec":
+            case "second":
+            case "seconds":
+                te.seconds = longValue;
+                break;
+            case "m":
+            case "min":
+            case "minúte":
+            case "minute":
+                te.minutes = longValue;
+                break;
+            case "h":
+            case "hour":
+            case "hours":
+                te.hours = longValue;
+                break;
+            case "d":
+            case "day":
+            case "days":
+                te.days = longValue;
+                break;
+            default:
+                return Optional.empty();
+        }
+
+        return Optional.of(te);
+    }
     public static Optional<TimeEntry> of(String parse){
         TimeEntry te = new TimeEntry();
         for(val s:parse.split("\\+")){
