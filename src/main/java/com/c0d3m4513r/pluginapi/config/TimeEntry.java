@@ -21,8 +21,49 @@ public class TimeEntry{
     public long us;
     public long ns;
 
+    public long getTime(TimeUnit unit){
+        switch (unit){
+            case NANOSECONDS: return ns;
+            case MICROSECONDS: return us;
+            case MILLISECONDS: return ms;
+            case SECONDS: return seconds;
+            case MINUTES: return minutes;
+            case HOURS: return hours;
+            case DAYS: return days;
+            default: throw new RuntimeException("Too many enum variants");
+        }
+    }
+
+    public void setTime(TimeUnit unit, long value){
+        switch (unit){
+            case NANOSECONDS:
+                ns = value;
+                return;
+            case MICROSECONDS:
+                us = value;
+                return;
+            case MILLISECONDS:
+                ms = value;
+                return;
+            case SECONDS:
+                seconds = value;
+                return;
+            case MINUTES:
+                minutes = value;
+                return;
+            case HOURS:
+                hours = value;
+                return;
+            case DAYS:
+                days = value;
+                return;
+            default: throw new RuntimeException("Too many enum variants");
+        }
+    }
+
     public static Optional<TimeEntry> of(String unit, String value){
         long longValue;
+        if (value == null || unit == null) return Optional.empty();
         try {
             longValue = Long.parseLong(value);
         }catch (NullPointerException e){

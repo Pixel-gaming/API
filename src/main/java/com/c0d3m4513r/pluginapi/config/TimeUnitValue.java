@@ -21,12 +21,26 @@ public class TimeUnitValue implements Comparable<TimeUnitValue> {
     }
 
     @Override
-    /**
-     * This compare might yield different values depending on the order of comparing,
-     * because of the time conversion between different units.
-     */
     public int compareTo(TimeUnitValue o) {
-        long ov = unit.convert(o.value,o.unit);
-        return Long.compare(value,ov);
+        if (o.unit == unit)
+            return Long.compare(value,o.value);
+        TimeEntry te = new TimeEntry();
+        te.setTime(o.unit, o.value);
+        //o.unit and unit are guaranteed to be different
+        te.setTime(unit,value);
+        TimeUnitValue tuv = te.getMaxUnit();
+        if (tuv.value == 0) return 0;
+        else if (tuv.value > 0) return 1;
+        else return -1;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        try {
+            TimeUnitValue tuv = (TimeUnitValue) obj;
+            return compareTo(tuv)==0;
+        }catch (ClassCastException e){
+            return false;
+        }
     }
 }
