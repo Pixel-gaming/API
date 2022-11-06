@@ -2,6 +2,7 @@ package com.c0d3m4513r.pluginapi.Scoreboard;
 
 import com.c0d3m4513r.pluginapi.Nullable;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.function.Supplier;
 
@@ -16,7 +17,7 @@ public abstract class Scoreboard {
     public void clearSlot(DisplaySlot slot) {
         this.updateDisplaySlot(null, slot);
     }
-    public abstract void updateDisplaySlot(@Nullable Objective objective, DisplaySlot displaySlot) throws IllegalStateException;
+    public abstract void updateDisplaySlot(@Nullable Objective objective, @NonNull DisplaySlot displaySlot) throws IllegalStateException;
     public abstract void removeObjective(Objective objective);
 
 }
