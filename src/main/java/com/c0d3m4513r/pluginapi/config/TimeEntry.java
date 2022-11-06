@@ -66,7 +66,7 @@ public class TimeEntry{
         if (value == null || unit == null) return Optional.empty();
         try {
             longValue = Long.parseLong(value);
-        }catch (NullPointerException e){
+        }catch (NumberFormatException e){
             return Optional.empty();
         }
         TimeEntry te = new TimeEntry();
