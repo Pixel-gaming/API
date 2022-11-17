@@ -115,7 +115,7 @@ public class TimeEntry{
 
         return Optional.of(te);
     }
-    public static Optional<TimeEntry> of(String parse){
+    public static Optional<TimeEntry> of(@NonNull String parse){
         TimeEntry te = new TimeEntry();
         for(val s:parse.split("\\+")){
             try{
