@@ -129,7 +129,8 @@ public class TimeEntry{
                     }
                 }
                 if(u==null||value==null){
-                    throw new NullPointerException("The unit was likely invalid");
+                    API.getLogger().info("The unit was likely invalid");
+                    return Optional.empty();
                 }
                 long val = Long.parseLong(value);
                 switch (u){
