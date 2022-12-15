@@ -13,7 +13,7 @@ public interface Task {
      * represents that the task started immediately.
      *
      * @return The delay (offset) in either milliseconds or ticks (ticks are
-     *         exclusive to synchronous tasks)
+     *         exclusive to synchronous tasks) or <code>Long.MIN_VALUE</code>, if not supported
      */
     long getDelay();
 
@@ -22,7 +22,7 @@ public interface Task {
      * the task does not repeat.
      *
      * @return The interval (period) in either milliseconds or ticks (ticks are
-     *         exclusive to synchronous tasks)
+     *         exclusive to synchronous tasks) or <code>Long.MIN_VALUE</code>, if not supported
      */
     long getInterval();
 

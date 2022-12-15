@@ -4,8 +4,6 @@ import com.c0d3m4513r.pluginapi.API;
 import com.c0d3m4513r.pluginapi.convert.Convert;
 import lombok.*;
 
-import java.util.HashMap;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 @Data
@@ -159,6 +157,16 @@ public class TimeEntry{
         ms+=te.ms;
         us+=te.us;
         ns+=te.ns;
+    }
+
+    public void sub(TimeEntry te){
+        days-=te.days;
+        hours-=te.hours;
+        minutes-=te.minutes;
+        seconds-=te.seconds;
+        ms-=te.ms;
+        us-=te.us;
+        ns-=te.ns;
     }
     public long getHours(){return days*24+hours;}
     public long getMinutes(){return getHours()*60+minutes;}
