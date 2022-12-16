@@ -6,8 +6,11 @@ import lombok.ToString;
 public enum EventType {
     preinit,
     init,
-    load_complete,
     commandRegister,
+    load_complete,
+
+    ///This may potentially be executed multiple times, but for the first time it gets executed,
+    serverStarting,
     onReboot,
 
 }
