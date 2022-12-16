@@ -14,7 +14,7 @@ public abstract class Scoreboard {
     }
 
     public abstract void addObjective(Objective objective) throws IllegalArgumentException;
-    public void clearSlot(DisplaySlot slot) {
+    public void clearSlot(@NonNull DisplaySlot slot) {
         this.updateDisplaySlot(null, slot);
     }
     public abstract void updateDisplaySlot(@Nullable Objective objective, @NonNull DisplaySlot displaySlot) throws IllegalStateException;
