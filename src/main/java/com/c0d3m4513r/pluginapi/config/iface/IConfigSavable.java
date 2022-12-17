@@ -1,8 +1,16 @@
 package com.c0d3m4513r.pluginapi.config.iface;
 
+import com.c0d3m4513r.pluginapi.API;
+
+import java.util.Arrays;
+
+
 public interface IConfigSavable {
     /***
      * Saves all necessary Config values, to a IConfigSaver
      */
-    void saveValue();
+    default void saveValue(){
+        API.getLogger().info("LoadConfig was called!");
+        ConfigLoadableSavableExecuter.executeLoadOrSave(Savable.class, "saveValue", this);
+    }
 }
