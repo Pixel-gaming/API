@@ -1,5 +1,6 @@
 package com.c0d3m4513r.pluginapi;
 
+import com.c0d3m4513r.logger.Logger;
 import com.c0d3m4513r.pluginapi.command.CommandRegistrar;
 import com.c0d3m4513r.pluginapi.command.CommandResult;
 import com.c0d3m4513r.pluginapi.config.MainConfig;
@@ -7,8 +8,6 @@ import com.c0d3m4513r.pluginapi.config.iface.IConfigLoaderSaver;
 import com.c0d3m4513r.plugindef.Plugin;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.SneakyThrows;
-import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
