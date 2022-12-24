@@ -1,6 +1,7 @@
 package com.c0d3m4513r.pluginapi.config;
 
 import com.c0d3m4513r.pluginapi.API;
+import com.c0d3m4513r.pluginapi.Nullable;
 import com.c0d3m4513r.pluginapi.convert.Convert;
 import lombok.*;
 
@@ -59,7 +60,7 @@ public class TimeEntry{
         }
     }
 
-    public static Optional<TimeEntry> of(String unit, String value){
+    public static @NonNull Optional<TimeEntry> of(@Nullable String unit,@Nullable String value){
         long longValue;
         if (value == null || unit == null) return Optional.empty();
         try {
@@ -113,7 +114,7 @@ public class TimeEntry{
 
         return Optional.of(te);
     }
-    public static Optional<TimeEntry> of(@NonNull String parse){
+    public static @NonNull Optional<TimeEntry> of(@NonNull String parse){
         TimeEntry te = new TimeEntry();
         for(val s:parse.split("\\+")){
             try{

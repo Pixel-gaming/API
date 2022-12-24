@@ -25,6 +25,8 @@
 //Source is more or less sponge
 package com.c0d3m4513r.pluginapi.command;
 
+import lombok.NonNull;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +42,8 @@ public interface Command {
      * @return The result of a command being processed
      * @throws CommandException Thrown on a command error
      */
-    CommandResult process(CommandSource source, String arguments) throws CommandException;
+    @NonNull
+    CommandResult process(CommandSource source, String[] arguments) throws CommandException;
     /**
      * Gets a list of suggestions based on input.
      *
@@ -52,7 +55,7 @@ public interface Command {
      * @return A list of suggestions
      * @throws CommandException Thrown if there was a parsing error
      */
-    List<String> getSuggestions(CommandSource source, String arguments) throws CommandException;
+    List<String> getSuggestions(CommandSource source, String[] arguments) throws CommandException;
     /**
      * Gets a short one-line description of this command.
      *
