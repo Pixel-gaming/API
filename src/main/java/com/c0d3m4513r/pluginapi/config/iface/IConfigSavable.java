@@ -10,7 +10,6 @@ public interface IConfigSavable {
      * Saves all necessary Config values, to a IConfigSaver
      */
     default void saveValue(){
-        API.getLogger().info("LoadConfig was called!");
         ConfigLoadableSavableExecuter.executeLoadOrSave(Savable.class, "saveValue", this);
     }
 }

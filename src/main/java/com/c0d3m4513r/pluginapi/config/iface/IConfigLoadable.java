@@ -12,7 +12,6 @@ public interface IConfigLoadable {
      * Loads all necessary Config values, from a IConfigLoader
      */
     default void loadValue() {
-        API.getLogger().info("LoadConfig was called!");
         ConfigLoadableSavableExecuter.executeLoadOrSave(Loadable.class, "loadValue", this);
     }
 }
